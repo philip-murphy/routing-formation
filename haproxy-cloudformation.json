@@ -20,6 +20,21 @@
       "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
       "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
     },
+    "AdminUser": {
+      "Description": "The Haproxy Administration User",
+      "Type": "String",
+      "ConstraintDescription": "a valid username."
+    },
+    "AdminPassword": {
+      "Description": "The Haproxy Administration Password",
+      "Type": "String",
+      "ConstraintDescription": "a valid password."
+    },
+    "S3Bucket": {
+      "Description": "The S3 bucket name for static content",
+      "Type": "String",
+      "ConstraintDescription": "a valid S3 bucket."
+    },
     "KeyName": {
       "Description": "The EC2 Key Pair to allow SSH access to the instances",
       "Type": "AWS::EC2::KeyPair::KeyName",
@@ -334,7 +349,11 @@
               "         --region ", {
                 "Ref": "AWS::Region"
               }, "\n",
-              "sudo wget https://raw.githubusercontent.com/costacruise/routing-formation/master/haproxy.cfg > /etc/haproxy/haproxy.cfg\n",
+              
+              "sudo wget https://raw.githubusercontent.com/costacruise/routing-formation/master/haproxy.cfg -O /etc/haproxy/haproxy.cfg\n",
+              "sed -i -- 's/ADMINUSER/", { "Ref": "AdminUser" }, "/g' /etc/haproxy/haproxy.cfg\n", 
+              "sed -i -- 's/ADMINPASSWORD/", { "Ref": "AdminPassword" }, "/g' /etc/haproxy/haproxy.cfg\n", 
+              "sed -i -- 's/S3BUCKET/", { "Ref": "S3Bucket" }, "/g' /etc/haproxy/haproxy.cfg\n", 
               "sudo haproxy start\n",
 
               "/opt/aws/bin/cfn-signal -e $? ",
