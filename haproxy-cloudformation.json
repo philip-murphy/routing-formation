@@ -351,10 +351,10 @@
               }, "\n",
               
               "sudo wget https://raw.githubusercontent.com/costacruise/routing-formation/master/haproxy.cfg -O /etc/haproxy/haproxy.cfg\n",
-              "sed -i -- 's/ADMINUSER/", { "Ref": "AdminUser" }, "/g' /etc/haproxy/haproxy.cfg\n", 
-              "sed -i -- 's/ADMINPASSWORD/", { "Ref": "AdminPassword" }, "/g' /etc/haproxy/haproxy.cfg\n", 
-              "sed -i -- 's/S3BUCKET/", { "Ref": "S3Bucket" }, "/g' /etc/haproxy/haproxy.cfg\n", 
-              "sudo haproxy start\n",
+              "sudo sed -i -- 's/ADMINUSER/", { "Ref": "AdminUser" }, "/g' /etc/haproxy/haproxy.cfg\n", 
+              "sudo sed -i -- 's/ADMINPASSWORD/", { "Ref": "AdminPassword" }, "/g' /etc/haproxy/haproxy.cfg\n", 
+              "sudo sed -i -- 's/S3BUCKET/", { "Ref": "S3Bucket" }, "/g' /etc/haproxy/haproxy.cfg\n", 
+              "sudo service haproxy start\n",
 
               "/opt/aws/bin/cfn-signal -e $? ",
               "         --stack ", {
