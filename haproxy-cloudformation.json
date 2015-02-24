@@ -353,11 +353,12 @@
                 "Ref": "AWS::Region"
               }, "\n",
               "service haproxy start\n",
-              "wget https://raw.githubusercontent.com/costacruise/routing-formation/master/deploy.sh -O /usr/bin/deploy.sh\n",
-              "sed -i -- 's/AdminUser/", { "Ref": "AdminUser" }, "/g' /usr/bin/deploy.sh\n", 
-              "sed -i -- 's/AdminPassword/", { "Ref": "AdminPassword" }, "/g' /usr/bin/deploy.sh\n", 
-              "sed -i -- 's/S3Bucket/", { "Ref": "S3Bucket" }, "/g' /usr/bin/deploy.sh\n", 
-              "/usr/bin/deploy.sh\n",
+              "wget https://raw.githubusercontent.com/costacruise/routing-formation/master/deploy.sh -O /usr/local/bin/deploy.sh\n",
+              "chmod ugo+x /usr/local/bin/deploy.sh\n",
+              "sed -i -- 's/AdminUser/", { "Ref": "AdminUser" }, "/g' /usr/local/bin/deploy.sh\n", 
+              "sed -i -- 's/AdminPassword/", { "Ref": "AdminPassword" }, "/g' /usr/local/bin/deploy.sh\n", 
+              "sed -i -- 's/S3Bucket/", { "Ref": "S3Bucket" }, "/g' /usr/local/bin/deploy.sh\n", 
+              "/usr/local/bin/deploy.sh\n",
 
               "/opt/aws/bin/cfn-signal -e $? ",
               "         --stack ", {
