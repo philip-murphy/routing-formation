@@ -311,6 +311,10 @@
         "KeyName": {
           "Ref": "KeyName"
         },
+        "Tags": [{
+          "Key": "Purpose",
+          "Value": "Routing"
+        }],
         "ImageId": {
           "Fn::FindInMap": ["AWSRegionArch2AMI", {
             "Ref": "AWS::Region"
