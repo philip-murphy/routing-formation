@@ -29,6 +29,7 @@
     "S3Region": {
       "Description": "The S3 bucket region for static content",
       "Type": "String",
+      "Default": "eu-west-1",
       "ConstraintDescription": "a valid AWS region."
     },
     "KeyName": {
