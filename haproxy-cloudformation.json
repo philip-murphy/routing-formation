@@ -26,12 +26,6 @@
       "Type": "String",
       "ConstraintDescription": "a valid S3 bucket."
     },
-    "S3Region": {
-      "Description": "The S3 bucket region for static content",
-      "Type": "String",
-      "Default": "eu-west-1",
-      "ConstraintDescription": "a valid region."
-    },
     "KeyName": {
       "Description": "The EC2 Key Pair to allow SSH access to the instances",
       "Type": "AWS::EC2::KeyPair::KeyName",
@@ -362,7 +356,7 @@
                 "Ref": "S3Bucket"
               }, "/g' /usr/local/bin/deploy.sh\n",
               "sed -i -- 's/S3Region/", {
-                "Ref": "S3Region"
+                "Ref": "AWS::Region"
               }, "/g' /usr/local/bin/deploy.sh\n",
               "/usr/local/bin/deploy.sh\n",
 
