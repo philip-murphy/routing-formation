@@ -361,6 +361,9 @@
               "sed -i -- 's/S3Bucket/", {
                 "Ref": "S3Bucket"
               }, "/g' /usr/local/bin/deploy.sh\n",
+              "sed -i -- 's/S3Region/", {
+                "Ref": "S3Region"
+              }, "/g' /usr/local/bin/deploy.sh\n",
               "/usr/local/bin/deploy.sh\n",
 
               "/opt/aws/bin/cfn-signal -e $? ",
